@@ -4,6 +4,25 @@
 
 Proyek ini menggunakan Django dengan PostgreSQL sebagai database, dan dijalankan menggunakan Docker.
 
+===========================
+
+Fitur
+-----------------------
+Sistem ini menyediakan berbagai fitur untuk mengelola data inventory, di antaranya:
+
+1. Create + Read untuk data item
+2. Create + Read untuk data kategori
+3. Create + Read untuk data supplier
+4. Menampilkan ringkasan stok barang termasuk stok total, total nilai stok (harga x 
+jumlah), dan rata-rata harga barang.
+5. Menampilkan daftar barang yang stoknya di bawah ambang batas tertentu(stok item rendah).
+6. Menampilkan ringkasan per kategori, termasuk jumlah barang per kategori, total 
+nilai stok tiap kategori, dan rata-rata harga barang dalam kategori tersebut.
+7. Menampilkan ringkasan barang yang disuplai oleh masing-masing pemasok, 
+termasuk jumlah barang per pemasok dan total nilai barang yang disuplai.
+8. Menampilkan ringkasan dari keseluruhan sistem, termasuk total jumlah barang, nilai 
+stok keseluruhan, jumlah kategori, dan jumlah pemasok.
+
 Cara Menjalankan Proyek
 ------------------------
 
