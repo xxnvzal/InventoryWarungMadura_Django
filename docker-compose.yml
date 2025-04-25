@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:17
+    container_name: inventory_uts
+    environment:
+      POSTGRES_DB: uts_db
+      POSTGRES_USER: uts_user
+      POSTGRES_PASSWORD: uts_password
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5440:5432"
+
+  web:
+    build: .
+    container_name: inventory_web_uts
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./code:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

@@ -1,0 +1,81 @@
+{% extends 'sidebar.html' %} {% block content %}
+<div class="container">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><i class="bi bi-box-seam"></i> Kategori: {{ category.name }}</h1>
+    <div>
+      <a href="{% url 'category_list' %}" class="btn btn-outline-secondary me-2">
+        <i class="bi bi-arrow-left"></i> Kembali
+      </a>
+      <a href="{% url 'item_create' %}?category={{ category.id }}" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Tambah Item
+      </a>
+    </div>
+  </div>
+
+  <!-- Ringkasan -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title"><i class="bi bi-clipboard-data"></i> Ringkasan Kategori</h5>
+      <div class="row text-center mt-3">
+        <div class="col-md-4 border-end">
+          <p class="text-muted mb-1">Total Item</p>
+          <h4 class="fw-bold">{{ category.item_count }}</h4>
+        </div>
+        <div class="col-md-4 border-end">
+          <p class="text-muted mb-1">Total Nilai</p>
+          <h4 class="fw-bold text-success">Rp {{ category.total_value|default:0|floatformat:2 }}</h4>
+        </div>
+        <div class="col-md-4">
+          <p class="text-muted mb-1">Rata-rata Harga</p>
+          <h4 class="fw-bold text-primary">Rp {{ category.avg_price|default:0|floatformat:2 }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabel Item -->
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>Nama Item</th>
+          <th>Stok</th>
+          <th>Harga</th>
+          <th>Supplier</th>
+          <th>Status Stok</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>Rp {{ item.price|floatformat:2 }}</td>
+          <td>{{ item.supplier.name }}</td>
+          <td>
+            {% if item.quantity < 10 %}
+              <span class="badge bg-danger"><i class="bi bi-exclamation-circle-fill"></i> Rendah</span>
+            {% else %}
+              <span class="badge bg-success"><i class="bi bi-check-circle-fill"></i> Cukup</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" class="text-center text-muted">Tidak ada item dalam kategori ini.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot class="table-info">
+        <tr>
+          <td><strong>Total</strong></td>
+          <td><strong>{{ total_stock }}</strong></td>
+          <td></td>
+          <td colspan="2"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+{% endblock %}

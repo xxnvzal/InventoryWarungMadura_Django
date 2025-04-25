@@ -1,0 +1,44 @@
+{% extends 'sidebar.html' %} {% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1><i class="bi bi-truck me-2 text-success"></i>Daftar Supplier</h1>
+  <a href="{% url 'supplier_create' %}" class="btn btn-primary shadow-sm">
+    <i class="bi bi-plus-circle me-1"></i> Tambah Supplier
+  </a>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-hover align-middle shadow-sm border">
+    <thead class="table-light">
+      <tr>
+        <th><i class="bi bi-person-badge-fill me-1 text-secondary"></i>Nama</th>
+        <th><i class="bi bi-telephone-fill me-1 text-secondary"></i>Contact Info</th>
+        <th><i class="bi bi-box-seam me-1 text-secondary"></i>Jumlah Item</th>
+        <th><i class="bi bi-currency-dollar me-1 text-secondary"></i>Total Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for supplier in suppliers %}
+      <tr>
+        <td><strong>{{ supplier.name }}</strong></td>
+        <td>
+          <span class="text-muted small"><i class="bi bi-envelope"></i> {{ supplier.contact_info }}</span>
+        </td>
+        <td>
+          <span class="badge bg-secondary">{{ supplier.item_count }}</span>
+        </td>
+        <td>
+          <span class="text-success fw-bold">Rp {{ supplier.total_value|default:0|floatformat:2 }}</span>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4" class="text-center text-muted">Belum ada data supplier.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

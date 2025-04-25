@@ -1,0 +1,4 @@
+username,password,email,created_at,updated_at,is_superuser,is_staff
+admin1,qwerty1,admin1@gmail.com,2025-04-22 00:00:00+00,2025-04-22 00:00:00+00,True,True
+admin2,qwerty2,admin2@gmail.com,2025-04-22 00:00:00+00,2025-04-22 00:00:00+00,True,True
+admin3,qwerty3,admin3@gmail.com,2025-04-22 00:00:00+00,2025-04-22 00:00:00+00,True,True

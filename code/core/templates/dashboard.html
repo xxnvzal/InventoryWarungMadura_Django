@@ -1,0 +1,79 @@
+{% extends 'sidebar.html' %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+  .dashboard-card {
+    border: none;
+    border-radius: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    backdrop-filter: blur(10px);
+  }
+
+  .dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .dashboard-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .dashboard-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+  }
+
+  .dashboard-value {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+</style>
+
+<h1 class="mb-4 fw-bold">📊Dashboard</h1>
+
+<div class="row g-4">
+  <div class="col-md-3">
+    <div class="card text-white bg-primary dashboard-card text-center shadow-sm">
+      <div class="card-body">
+        <div class="dashboard-icon"><i class="fas fa-boxes"></i></div>
+        <div class="dashboard-title">Total Item</div>
+        <div class="dashboard-value">{{ total_items }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card text-white bg-success dashboard-card text-center shadow-sm">
+      <div class="card-body">
+        <div class="dashboard-icon"><i class="fas fa-money-bill-wave"></i></div>
+        <div class="dashboard-title">Nilai Stok</div>
+        <div class="dashboard-value">Rp {{ total_stock_value }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card text-white bg-warning dashboard-card text-center shadow-sm">
+      <div class="card-body">
+        <div class="dashboard-icon"><i class="fas fa-tags"></i></div>
+        <div class="dashboard-title">Categories</div>
+        <div class="dashboard-value">{{ total_categories }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card text-white bg-info dashboard-card text-center shadow-sm">
+      <div class="card-body">
+        <div class="dashboard-icon"><i class="fas fa-truck"></i></div>
+        <div class="dashboard-title">Suppliers</div>
+        <div class="dashboard-value">{{ total_suppliers }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

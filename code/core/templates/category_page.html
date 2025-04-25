@@ -1,0 +1,44 @@
+{% extends 'sidebar.html' %} {% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1><i class="bi bi-tags-fill me-2 text-warning"></i>Daftar Kategori</h1>
+  <a href="{% url 'category_create' %}" class="btn btn-primary shadow-sm">
+    <i class="bi bi-plus-circle me-1"></i> Tambah Kategori
+  </a>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-hover align-middle shadow-sm border">
+    <thead class="table-light">
+      <tr>
+        <th><i class="bi bi-tag-fill text-secondary me-1"></i>Nama</th>
+        <th><i class="bi bi-boxes me-1"></i>Jumlah Item</th>
+        <th><i class="bi bi-currency-dollar me-1"></i>Total Value</th>
+        <th><i class="bi bi-graph-up me-1"></i>Rata-rata Harga</th>
+        <th><i class="bi bi-gear me-1"></i>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for category in categories %}
+      <tr>
+        <td>{{ category.name }}</td>
+        <td><span class="badge bg-secondary">{{ category.item_count }}</span></td>
+        <td>Rp {{ category.total_value|default:0|floatformat:2 }}</td>
+        <td>Rp {{ category.avg_price|default:0|floatformat:2 }}</td>
+        <td>
+          <a href="{% url 'category_items' category.id %}" class="btn btn-sm btn-outline-info">
+            <i class="bi bi-eye"></i> Lihat Items
+          </a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5" class="text-center text-muted">Belum ada kategori tersedia.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+{% endblock %}
